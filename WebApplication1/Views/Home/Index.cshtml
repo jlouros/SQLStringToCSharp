@@ -1,0 +1,24 @@
+﻿@model WebApp.Models.EscapeStringResponse
+@{
+    ViewBag.Title = "Home Page";  
+    var attachResultVar = ViewData["attachResultVar"] as bool?;
+    var checkedAttachResultVar = attachResultVar.HasValue && attachResultVar.Value ? "checked=\"checked\"" : "";
+}
+
+<div class="row">
+
+    <div>
+        <h3>Input</h3>
+        <form action="/Home/Index" method="post">
+            <textarea name="userInput">@Model.Input</textarea>
+            <br />
+            <input type="checkbox" name="attachResultVar" @checkedAttachResultVar value="true"/>
+            <input type="submit" />
+        </form>
+    </div>
+
+    <div>
+        <h3>Result</h3>
+        <textarea>@Model.Result</textarea>
+    </div>
+</div>

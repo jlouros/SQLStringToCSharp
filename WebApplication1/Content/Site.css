@@ -1,0 +1,10 @@
+﻿body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+
+textarea {
+    width: 100%;
+    min-height : 8em;
+}
