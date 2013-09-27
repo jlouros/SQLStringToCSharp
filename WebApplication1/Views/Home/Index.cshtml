@@ -11,9 +11,11 @@
         <h3>Input</h3>
         <form action="/Home/Index" method="post">
             <textarea name="userInput">@Model.Input</textarea>
-            <br />
-            <input type="checkbox" name="attachResultVar" @checkedAttachResultVar value="true"/>
-            <input type="submit" />
+            
+            <input id="chkApplyResult" type="checkbox" name="attachResultVar" @checkedAttachResultVar value="true" class="floatLeft" />
+            <label for="chkApplyResult">&nbsp;&nbsp;&nbsp;attach 'result' var</label>
+
+            <input type="submit" class="clear" />
         </form>
     </div>
 

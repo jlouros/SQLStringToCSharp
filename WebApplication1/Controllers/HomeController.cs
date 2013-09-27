@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using WebApp.Models;
+using WebApp.Helpers;
 
 namespace WebApp.Controllers
 {
@@ -20,7 +21,7 @@ namespace WebApp.Controllers
         [ValidateInput(false)]
         public ActionResult Index(string userInput = "", bool attachResultVar = false)
         {
-            string parsedString = !string.IsNullOrWhiteSpace(userInput) ? EscapeSQLStringToCSharpString(userInput, attachResultVar) : "";
+            string parsedString = !string.IsNullOrWhiteSpace(userInput) ? CSharpEscaper.FromSQL(userInput, attachResultVar) : "";
 
             ViewData["attachResultVar"] = attachResultVar;
 
@@ -29,38 +30,6 @@ namespace WebApp.Controllers
                 Input = userInput,
                 Result = parsedString
             });
-        }
-
-        private string EscapeSQLStringToCSharpString(string userInput, bool attachResultVar)
-        {
-            string result = userInput;
-
-            result = result.Replace("'+@", "\" + ");
-            result = result.Replace("+@", " + ");
-            result = result.Replace("+'", " + \"");
-
-            result = result.Replace("\"", "\\\"");
-
-            result = result.Replace(Environment.NewLine, "\\r\"+\n\"\\n");
-
-
-            //replace the first and the last ' chars
-            if (result.IndexOf('\'', 0, 1) > -1)
-            {
-                result = result.Remove(0, 1);
-                result = "\"" + result;
-                if (attachResultVar)
-                    result = "result = " + result;
-            }
-            if (result.IndexOf('\'', result.Length - 1, 1) > -1)
-            {
-                result = result.Remove(result.Length - 1, 1);
-                result += "\"";
-                if(attachResultVar)
-                    result += ";";
-            }
-
-            return result;
         }
 
     }

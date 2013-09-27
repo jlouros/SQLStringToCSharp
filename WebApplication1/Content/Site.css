@@ -8,3 +8,11 @@ textarea {
     width: 100%;
     min-height : 8em;
 }
+
+.clear {
+    clear:both;
+}
+
+.floatLeft {
+    float:left;
+}
