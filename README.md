@@ -1,4 +1,4 @@
-SQLStringToCSharp
+SQL string 2 C# escaped
 =================
 
 Small web tool to convert SQL strings to escaped C# strings
